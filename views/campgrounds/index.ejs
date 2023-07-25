@@ -1,0 +1,49 @@
+<%- layout('layouts/boilerplate') %>
+<h1 class="text-center">All Campgrounds</h1>
+
+<% for(let camp of camps){ %>
+
+<div class="card my-3 bg-dark text-white">
+  <div class="row">
+    <div class="col-md-4">
+      <img
+        src="<%= camp.img %>"
+        class="card-img-top img-fluid rounded"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <a class="text-decoration-none" href="/campgrounds/<%= camp._id %>">
+          <h5 class="card-title"><%= camp.title %></h5>
+        </a>
+        <p class="card-text">
+          <span
+            ><svg
+              class="bk-icon -iconset-geo_pin"
+              height="20"
+              role="presentation"
+              width="20"
+              viewBox="0 0 128 128"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M98.5 42.5a34.5 34.5 0 1 0-64.3 17.2L64 120l29.8-60.3a34.2 34.2 0 0 0 4.7-17.2zM64 59.7a17.2 17.2 0 1 1 17-17 17.2 17.2 0 0 1-17 17z"
+              ></path></svg
+          ></span>
+          <a
+            href="https://www.google.com/maps/place/<%= camp.location.split(' ').join('') %>"
+            ><small><%= camp.location %></small></a
+          >
+        </p>
+        <p class="card-text"><%= camp.description %></p>
+        <a href="/campgrounds/<%= camp._id %>" class="btn btn-primary"
+          >View Details</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<% } %>

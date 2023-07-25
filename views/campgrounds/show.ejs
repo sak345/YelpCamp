@@ -1,0 +1,91 @@
+<%- layout('layouts/boilerplate') %>
+
+<div class="row">
+  <div class="col-10 m-auto mb-3">
+    <div class="card">
+      <!-- <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="<%= camp.img %>" class="d-block w-100" alt="..." />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1689490329564-288af125b451?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img src="<%= camp.img %>" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div> -->
+
+      <div class="img">
+        <img src="<%= camp.img %>" class="d-block w-100 rounded" alt="..." />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= camp.title%></h5>
+        <p class="card-text"><%= camp.description %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-muted"><%= camp.location %></li>
+        <li class="list-group-item">$<%= camp.price %> /night</li>
+      </ul>
+      <div class="card-body">
+        <a
+          href="/campgrounds/<%= camp._id %>/edit"
+          class="card-link btn btn-primary"
+          >Edit</a
+        >
+        <form
+          class="d-inline"
+          action="/campgrounds/<%= camp._id %>/?_method=DELETE"
+          method="post"
+        >
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
