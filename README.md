@@ -20,7 +20,7 @@ Overall, Yelp Camp is an ambitious project that aims to create a robust and enga
 TO RUN THE CODE: 
 1) Simply download the code in ZIP format and extract it.
 2) Open the terminal and go to the directory where the code is extracted.
-3) Type - ```npm install``` or ```npm i``` to install all the required packages. (you can look at all the packages used in package.json file)
+3) Type - ```npm install``` or ```npm i``` to install all the required packages. (you can look at all the package dependencies in package.json file)
 4) After all the packages have been successfully been installed, type - ```node app.js``` or ```nodemon app.js```(if you have nodemon install globally)
 5) You'll see a message - ```Serving on port: 3000, Database connected``` which means that the local server has started.
 6) Open your web browser and go to - 'http://localhost:3000/campgrounds' and the site will be up! :)
