@@ -21,7 +21,9 @@ TO RUN THE CODE:
 1) Simply download the code in ZIP format and extract it.
 2) Open the terminal and go to the directory where the code is extracted.
 3) Type - ```npm install``` or ```npm i``` to install all the required packages. (you can look at all the package dependencies in package.json file)
-5) After all the packages have been successfully been installed, type - ```cd seeds``` to go inside the seeds folder and type       ```node index.js``` to run the index.js file which will seed the initial random data into the database.
+5) After all the packages have been successfully been installed, type - ```cd seeds``` to go inside the seeds folder and type      
+ ```node index.js``` to run the index.js file which will seed the initial random data into the database. You'll see a message   
+ ```Database Connected, closing connection``` which means the database has been successfully seeded.
 6) Once the database has some initial data in it, go back by typing - ```cd ..``` and type - ```node app.js``` or ```nodemon app.js``` (if you have nodemon installed globally).
 7) You'll see a message - ```Serving on port: 3000, Database connected``` which means that the local server has started.
 8) Open your web browser and go to - 'http://localhost:3000/campgrounds' and the application will be up! :)
