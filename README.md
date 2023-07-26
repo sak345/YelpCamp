@@ -17,13 +17,32 @@ Furthermore, Yelp Camp implements search and filtering functionalities, enabling
 
 Overall, Yelp Camp is an ambitious project that aims to create a robust and engaging community-driven platform for camping enthusiasts. Though still in the development stage, the utilization of modern JavaScript technologies, the RESTful route architecture, and the inclusion of essential tools like Node.js, Express, MongoDB, and Mongoose set the foundation for a promising and feature-rich camping experience.
 
-TO RUN THE CODE: 
+## TO RUN THE CODE:
+
 1) Simply download the code in ZIP format and extract it.
+   
 2) Open the terminal and go to the directory where the code is extracted.
-3) Type - ```npm install``` or ```npm i``` to install all the required packages. (you can look at all the package dependencies in package.json file)
-5) After all the packages have been successfully been installed, type - ```cd seeds``` to go inside the seeds folder and type      
+   
+3) Type - ```npm install``` or ```npm i``` to install all the required packages. (you can look at all the package dependencies in package.json file).
+
+4) After all the packages have been successfully been installed, type - ```cd seeds``` to go inside the seeds folder and type      
  ```node index.js``` to run the index.js file which will seed the initial random data into the database. You'll see a message   
  ```Database Connected, closing connection``` which means the database has been successfully seeded.
-6) Once the database has some initial data in it, go back by typing - ```cd ..``` and type - ```node app.js``` or ```nodemon app.js``` (if you have nodemon installed globally).
-7) You'll see a message - ```Serving on port: 3000, Database connected``` which means that the local server has started.
-8) Open your web browser and go to - 'http://localhost:3000/campgrounds' and the application will be up! :)
+
+5) Once the database has some initial data in it, go back by typing - ```cd ..``` and type - ```node app.js``` or ```nodemon app.js``` (if you have nodemon installed globally).
+   
+6) You'll see a message - ```Serving on port: 3000, Database connected``` which means that the local server has started.
+   
+7) Open your web browser and go to - 'http://localhost:3000/campgrounds' and the application will be up! :)
+   
+
+
+## FUTURE ADD-ONS TO THE YELP CAMP:
+### 1) **User Authentication and Authorization**  
+We aim to integrate a robust user authentication and authorization system to ensure secure access and protect user data. This will involve user registration and login functionalities, allowing campers to create accounts and securely log in to access personalized features. Additionally, we will implement role-based authorization, granting different levels of access to users based on their roles (e.g., regular user, campground owner, administrator).
+### 2) **Customer Review and Feedback System**  
+We will introduce a customer review and feedback system to enrich the Yelp Camp community further. Authenticated users can leave reviews and star ratings for campgrounds they have visited, sharing their experiences with others. This will empower fellow campers to make well-informed decisions when choosing their next camping destination. Users will also have the option to interact with reviews through comments and replies, fostering engagement and camaraderie within the platform.
+### 3) **Interactive and Fancy Cluster Map**  
+To provide an engaging and visually captivating browsing experience, we plan to create an interactive, fancy cluster map. This map will display the locations of all campgrounds in an intuitive and visually appealing way. Campgrounds that are geographically close together will be clustered, and as users zoom in, the clusters will dynamically expand to reveal individual campground markers. Clicking on a marker will display essential details about the campground, enticing users to explore and discover new camping spots seamlessly.
+### 4) **Enhanced Search and Filtering Options**  
+We will introduce enhanced search and filtering options to empower users to find their ideal camping destinations. Users can filter campgrounds based on criteria such as location, amenities, ratings, and user reviews. The search functionality will be refined to deliver accurate and relevant results, making it easier for users to discover campgrounds that align with their preferences.
