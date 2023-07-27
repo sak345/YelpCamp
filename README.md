@@ -19,9 +19,7 @@ Overall, Yelp Camp is an ambitious project that aims to create a robust and enga
    
 3) Type - ```npm install``` or ```npm i``` to install all the required packages. (you can look at all the package dependencies in package.json file).
 
-4) After all the packages have been successfully been installed, type - ```cd seeds``` to go inside the seeds folder and type      
- ```node index.js``` to run the index.js file which will seed the initial random data into the database. You'll see a message   
- ```Database Connected, closing connection``` which means the database has been successfully seeded.
+4) After all the packages have been successfully been installed, type - ```cd seeds``` to go inside the seeds folder and type ```node index.js``` to run the index.js file which will seed the initial random data into the database. You'll see a message ```Database Connected, closing connection``` which means the database has been successfully seeded.
 
 5) Once the database has some initial data in it, go back by typing - ```cd ..``` and type - ```node app.js``` or ```nodemon app.js``` (if you have nodemon installed globally).
    
