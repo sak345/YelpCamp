@@ -9,16 +9,20 @@
       novalidate
     >
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <label for="exampleFormControlInput1" class="form-label">Name</label>
         <input
           type="text"
           class="form-control"
           id="exampleFormControlInput1"
           name="campground[title]"
-          placeholder="Name of Campground"
+          placeholder="Name of Campground (min. 5 characters)"
           required
+          minlength="5"
+          maxlength="30"
         />
-        <div class="invalid-feedback">Please provide a valid name</div>
+        <div class="invalid-feedback">
+          Please provide a valid name of atleast 5 and max. 30 characters
+        </div>
       </div>
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label"
@@ -62,7 +66,7 @@
             min="0"
           />
           <span class="input-group-text">.00</span>
-          <div class="invalid-feedback">Please provide a price</div>
+          <div class="invalid-feedback">Please provide a valid price</div>
         </div>
       </div>
       <div class="mb-3">
@@ -73,10 +77,14 @@
           class="form-control"
           id="exampleFormControlTextarea1"
           name="campground[description]"
+          placeholder="Describe your campground in atleast 20 characters..."
           rows="3"
           required
+          minlength="20"
         ></textarea>
-        <div class="invalid-feedback">Please provide a valid description</div>
+        <div class="invalid-feedback">
+          Please provide a valid description of minimum 20 characters
+        </div>
       </div>
       <div class="mb-3">
         <button type="submit" class="btn btn-primary mb-3">Submit</button>

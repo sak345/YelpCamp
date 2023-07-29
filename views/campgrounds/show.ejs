@@ -2,7 +2,65 @@
 
 <div class="row">
   <div class="col-10 m-auto mb-3">
-    <div class="card">
+    <div class="card mb-3">
+      <!-- <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="<%#= camp.img %>" class="d-block w-100" alt="..." />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="https://images.unsplash.com/photo-1689490329564-288af125b451?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
+              class="d-block w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item">
+            <img src="<%#= camp.img %>" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div> -->
+
       <div class="img">
         <img src="<%= camp.img %>" class="d-block w-100 rounded" alt="..." />
       </div>
@@ -29,5 +87,85 @@
         </form>
       </div>
     </div>
+
+    <h2 class="my-3">Reviews</h2>
+    <hr />
+
+    <!-- <div class="list-group mb-3">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Rating: <%= camp.reviews.rating %></h5>
+        <small>3 days ago</small>
+      </div>
+      <p class="mb-1"><%= camp.reviews.body%></p>
+    </div> -->
+
+    <div class="mb-3">
+      <div class="list-group m-3">
+        <% if(camp.reviews.length){ %> <% for(let review of camp.reviews){ %>
+
+        <div class="border rounded m-2 p-2">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Rating: <%= review.rating %></h5>
+            <small><i>Just Now</i></small>
+          </div>
+          <p><%= review.body%></p>
+
+          <div class="d-flex w-100 justify-content-end">
+            <form
+              action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=DELETE"
+              method="post"
+            >
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </div>
+        </div>
+
+        <% } %> <% } else{ %>
+        <i class="text-muted">No reviews yet</i>
+        <% } %>
+      </div>
+    </div>
+
+    <h2 class="my-3">Leave a review</h2>
+    <hr />
+
+    <form
+      action="/campgrounds/<%= camp._id %>/reviews"
+      method="post"
+      class="needs-validation mx-5"
+      novalidate
+    >
+      <div class="mb-2">
+        <label class="form-label" for="rating">Rating</label>
+        <input
+          type="range"
+          class="form-range bg-dark rounded"
+          min="0"
+          max="5"
+          name="review[rating]"
+          id="rating"
+          required
+        />
+        <div class="invalid-feedback">Please give a rating</div>
+      </div>
+      <div class="mb-3">
+        <label for="body">Text</label>
+        <textarea
+          name="review[body]"
+          class="form-control"
+          id="body"
+          cols="30"
+          rows="5"
+          minlength="10"
+          required
+        ></textarea>
+        <div class="invalid-feedback">
+          Please provide your feedback in atleast 10 characters
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-success">Submit</button>
+      </div>
+    </form>
   </div>
 </div>
