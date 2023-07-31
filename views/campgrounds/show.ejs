@@ -11,7 +11,12 @@
         <p class="card-text"><%= camp.description %></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><%= camp.location %></li>
+        <li class="list-group-item text-muted">
+          <a
+            href="https://www.google.com/maps/place/<%= camp.location.split(' ').join('') %>"
+            ><%= camp.location %></a
+          >
+        </li>
         <li class="list-group-item">$<%= camp.price %> /night</li>
       </ul>
       <div class="card-body">
@@ -30,16 +35,19 @@
       </div>
     </div>
 
-    <h2 class="my-3">Reviews</h2>
+    <h2 class="my-4">Reviews</h2>
     <hr />
-    <div class="mb-3 overflow-auto" style="max-height: 30rem">
-      <div class="list-group m-3">
-        <% if(camp.reviews.length){ %> <% for(let review of camp.reviews){ %>
+
+    <div class="mb-3">
+      <div class="list-group m-3 overflow-auto" style="max-height: 30rem">
+        <% let sum = 0, count = 0 %> <% if(camp.reviews.length){ %> <% for(let
+        review of camp.reviews){ %> <% sum += review.rating %> <% count++ %>
 
         <div class="border rounded m-2 p-2">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Rating: <%= review.rating %></h5>
           </div>
+
           <div class="overflow-auto text-wrap p-2" style="max-height: 10rem">
             <p><%= review.body%></p>
           </div>
@@ -54,19 +62,25 @@
           </div>
         </div>
 
-        <% } %> <% } else{ %>
+        <% } %><% } else{ %>
         <i class="text-muted">No reviews yet</i>
         <% } %>
       </div>
+
+      <% if(camp.reviews.length){ %>
+      <div class="m-4">
+        <h5>Overall Rating: <%= sum/count %></h5>
+      </div>
+      <% } %>
     </div>
 
-    <h2 class="my-3">Leave a review</h2>
+    <h2 class="my-4">Leave a review</h2>
     <hr />
 
     <form
       action="/campgrounds/<%= camp._id %>/reviews"
       method="post"
-      class="needs-validation mx-5"
+      class="needs-validation mx-4"
       novalidate
     >
       <div class="mb-2">
