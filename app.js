@@ -1,3 +1,4 @@
+//imports
 const express = require('express')
 const app = express()
 const path = require('path')
@@ -10,14 +11,15 @@ const expressError = require('./utilities/expressError')
 const {campgroundSchema} = require('./schemas.js')
 const Review = require('./models/reviews')
 
+//connecting to mongo database
 mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
-
 const db = mongoose.connection
 db.on("error", console.error.bind(console, 'Connection Error'))
 db.once("open", () => {
     console.log("Database connected!")
 })
 
+//utilities
 app.engine('ejs', ejsMate)
 
 app.set('view engine', 'ejs')
@@ -36,7 +38,7 @@ const validateCampground = (req, res, next) => {
     }
 }
 
-//home
+//home page
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -90,9 +92,8 @@ app.post('/campgrounds/:id/reviews', catchAsync(async (req, res) => {
 
 app.delete('/campgrounds/:campId/reviews/:reviewId', catchAsync(async(req, res) => {
     const {campId, reviewId} = req.params
-    const camp = await Campground.findById(campId)
+    await Campground.findByIdAndUpdate(campId, {$pull: {reviews: reviewId}})
     await Review.findByIdAndDelete(reviewId)
-    await camp.save()
     res.redirect(`/campgrounds/${campId}`)
 }))
 
@@ -100,6 +101,7 @@ app.all('*', (req, res, next) => {
     next(new expressError('404! Page not found :(', 404));
 })
 
+//error handler
 app.use((err, req, res, next) => {
      if(!err.message) err.message = "Oh no! Something went wrong! :("
      if(!err.statusCode) err.statusCode = 500;
