@@ -1,3 +1,4 @@
+//details of 50 random cities
 module.exports = [
     {
         city: "New York",

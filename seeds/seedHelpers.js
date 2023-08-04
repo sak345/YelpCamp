@@ -1,3 +1,4 @@
+//random names to generate campground name
 module.exports.descriptors = [
     'Forest',
     'Ancient',

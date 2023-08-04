@@ -9,7 +9,7 @@
       novalidate
     >
       <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Name</label>
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
         <input
           type="text"
           class="form-control"
@@ -19,6 +19,9 @@
           required
           minlength="5"
           maxlength="30"
+          <% if(formData && formData.length){//displaying this value if the user made a mistake and already filled some data in the form %>
+            value = "<%= formData[0].campground.title %>"
+          <% } %>
         />
         <div class="invalid-feedback">
           Please provide a valid name of atleast 5 and max. 30 characters
@@ -35,6 +38,9 @@
           name="campground[location]"
           placeholder="Location of Campground"
           required
+          <% if(formData && formData.length){ %>
+            value = "<%= formData[0].campground.location %>"
+          <% } %>
         />
         <div class="invalid-feedback">Please provide a valid location</div>
       </div>
@@ -49,6 +55,9 @@
           name="campground[img]"
           placeholder="Image of Campground"
           required
+          <% if(formData && formData.length){ %>
+            value = "<%= formData[0].campground.img %>"
+          <% } %>
         />
         <div class="invalid-feedback">Please provide a valid URL</div>
       </div>
@@ -64,6 +73,9 @@
             name="campground[price]"
             required
             min="0"
+            <% if(formData && formData.length){ %>
+              value = "<%= formData[0].campground.price %>"
+            <% } %>
           />
           <span class="input-group-text">.00</span>
           <div class="invalid-feedback">Please provide a valid price</div>
@@ -81,7 +93,9 @@
           rows="3"
           required
           minlength="20"
-        ></textarea>
+        ><% if(formData && formData.length){ %>
+          <%= formData[0].campground.description %>
+        <% } %></textarea>
         <div class="invalid-feedback">
           Please provide a valid description of minimum 20 characters
         </div>

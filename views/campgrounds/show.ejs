@@ -93,6 +93,9 @@
           name="review[rating]"
           id="rating"
           required
+          <% if(formData && formData.length){ %>
+            value = "<%= formData[0].review.rating %>"
+          <% } %>
         />
         <div class="invalid-feedback">Please give a rating</div>
       </div>
@@ -106,7 +109,9 @@
           rows="5"
           minlength="10"
           required
-        ></textarea>
+        ><% if(formData && formData.length){ %>
+            <%= formData[0].review.body %>
+          <% } %></textarea>
         <div class="invalid-feedback">
           Please provide your feedback in atleast 10 characters
         </div>

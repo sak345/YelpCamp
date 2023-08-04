@@ -26,7 +26,7 @@ app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, '/public')))
 
@@ -36,8 +36,8 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        expires: Date.now() + 1000*60*60*24,
-        maxAge: 1000*60*60*24
+        expires: Date.now() + 1000 * 60 * 60 * 24,
+        maxAge: 1000 * 60 * 60 * 24
     }
 }
 app.use(session(sessionConfig))
@@ -46,6 +46,7 @@ app.use(flash())
 app.use((req, res, next) => {
     res.locals.success = req.flash('success')
     res.locals.err = req.flash('err')
+    res.locals.formData = req.flash('formData')//used to store the formData entered by user to pre-fill the form with this data
     next();
 })
 
@@ -66,13 +67,13 @@ app.all('*', (req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-     if(!err.message) err.message = "Oh no! Something went wrong! :("
-     if(!err.statusCode) err.statusCode = 500;
-     if(err.name === 'CastError'){
+    if (!err.message) err.message = "Oh no! Something went wrong! :("
+    if (!err.statusCode) err.statusCode = 500;
+    if (err.name === 'CastError') {
         err.message = "Sorry! We could not find what you requested for."
         err.statusCode = 400;
-     }
-    res.status(err.statusCode).render('error', {err});
+    }
+    res.status(err.statusCode).render('error', { err });
 })
 
 //listener

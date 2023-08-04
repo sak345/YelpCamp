@@ -31,9 +31,9 @@ const campgroundSchema = new Schema({
     ]
 })
 
-campgroundSchema.post('findOneAndDelete', async function(camp) {
-    if(camp.reviews.length){
-        await Review.deleteMany({_id: {$in: camp.reviews}})
+campgroundSchema.post('findOneAndDelete', async function (camp) {//query middleware to delete all reviews on that campground
+    if (camp.reviews.length) {
+        await Review.deleteMany({ _id: { $in: camp.reviews } })
     }
 })
 

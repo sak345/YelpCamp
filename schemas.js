@@ -1,6 +1,6 @@
 const Joi = require('joi')
 
-module.exports.campgroundSchema = Joi.object({
+module.exports.campgroundSchema = Joi.object({//schema to vaildate campgrounds
     campground: Joi.object({
         title: Joi.string()
             .min(3)
@@ -16,7 +16,7 @@ module.exports.campgroundSchema = Joi.object({
     }).required()
 })
 
-module.exports.reviewSchema = Joi.object({
+module.exports.reviewSchema = Joi.object({//schema to validate reviews
     review: Joi.object({
         rating: Joi.number().min(0).max(5).required(),
         body: Joi.string().min(10).trim().required()
