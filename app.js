@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, '/public')))
 
+//session configuration
 const sessionConfig = {
     secret: 'thiswillbeupdatedinthefuture',
     resave: false,
@@ -48,12 +49,14 @@ app.use(session(sessionConfig))
 
 app.use(flash())
 
+//passport configuration for user authentication
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+//middleware to store data inside res.locals to make it visible to /views dir.
 app.use((req, res, next) => {
     if (!['/login', '/signUp', '/'].includes(req.originalUrl)) {
         if (req.originalUrl.includes('/reviews')) {
@@ -88,6 +91,7 @@ app.all('*', (req, res, next) => {
     next(new expressError('404! Page not found :(', 404));
 })
 
+//middleware to get all the error requests and render the error accordingly
 app.use((err, req, res, next) => {
     if (!err.message) err.message = "Oh no! Something went wrong! :("
     if (!err.statusCode) err.statusCode = 500;
