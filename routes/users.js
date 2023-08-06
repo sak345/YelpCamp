@@ -6,10 +6,12 @@ const catchAsync = require('../utilities/catchAsyncError')
 const { notLoggedIn, storeReturnTo } = require('../middlewares')
 const { route } = require('./reviews')
 
+//view signUp form
 router.get('/signUp', notLoggedIn, (req, res) => {
     res.render('users/signUp')
 })
 
+//handle a signUp request
 router.post('/signUp', notLoggedIn, catchAsync(async (req, res, next) => {
     const { username, email, password } = req.body
     const user = new User({ username, email })
@@ -24,10 +26,13 @@ router.post('/signUp', notLoggedIn, catchAsync(async (req, res, next) => {
 
 }))
 
+//view the login form
 router.get('/login', notLoggedIn, (req, res) => {
     res.render('users/login')
 })
 
+
+//handle a login request
 router.post('/login', notLoggedIn, storeReturnTo, passport.authenticate('local', {
     failureFlash: { type: 'err', message: 'Username or password incorrect.' },
     failureRedirect: '/login'
@@ -38,6 +43,7 @@ router.post('/login', notLoggedIn, storeReturnTo, passport.authenticate('local',
     res.redirect(redirectUrl)
 })
 
+//handle a logout request
 router.get('/logout', (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.flash('err', "You're already logged out!")
