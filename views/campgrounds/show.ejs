@@ -51,7 +51,6 @@
           <div class="overflow-auto text-wrap p-2" style="max-height: 10rem">
             <p><%= review.body%></p>
           </div>
-
           <div class="d-flex w-100 justify-content-end">
             <form
               action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=DELETE"
@@ -93,8 +92,8 @@
           name="review[rating]"
           id="rating"
           required
-          <% if(formData && formData.length){ %>
-            value = "<%= formData[0].review.rating %>"
+          <%if(formData && formData.length){%>
+            value = "<%= formData[0].review.rating %>" 
           <% } %>
         />
         <div class="invalid-feedback">Please give a rating</div>
@@ -109,9 +108,11 @@
           rows="5"
           minlength="10"
           required
-        ><% if(formData && formData.length){ %>
+        >
+<% if(formData && formData.length){ %>
             <%= formData[0].review.body %>
-          <% } %></textarea>
+          <% } %></textarea
+        >
         <div class="invalid-feedback">
           Please provide your feedback in atleast 10 characters
         </div>

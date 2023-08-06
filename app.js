@@ -8,9 +8,13 @@ const ejsMate = require('ejs-mate')
 const expressError = require('./utilities/expressError')
 const session = require('express-session')
 const flash = require('connect-flash')
+const passport = require('passport')
+const LocalStrategy = require('passport-local')
+const User = require('./models/user')
 
 const campgroundRouter = require('./routes/campgrounds')
 const reviewRouter = require('./routes/reviews')
+const userRouter = require('./routes/users')
 
 //connecting database
 mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
@@ -20,7 +24,7 @@ db.once("open", () => {
     console.log("Database connected!")
 })
 
-//utilities
+//configurations
 app.engine('ejs', ejsMate)
 
 app.set('view engine', 'ejs')
@@ -43,10 +47,25 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 
 app.use(flash())
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
+    if (!['/login', '/signUp', '/'].includes(req.originalUrl)) {
+        if (req.originalUrl.includes('/reviews')) {
+            req.session.returnTo = req.originalUrl.split('/reviews')[0];
+        } else {
+            req.session.returnTo = req.originalUrl
+        }
+    }
     res.locals.success = req.flash('success')
-    res.locals.err = req.flash('err')
+    res.locals.error = req.flash('err')
     res.locals.formData = req.flash('formData')//used to store the formData entered by user to pre-fill the form with this data
+    res.locals.currUser = req.user;
     next();
 })
 
@@ -60,6 +79,9 @@ app.use('/campgrounds', campgroundRouter)
 
 //reviews routes
 app.use('/campgrounds/:id/reviews', reviewRouter)
+
+//users routes
+app.use('/', userRouter)
 
 //error handlers
 app.all('*', (req, res, next) => {

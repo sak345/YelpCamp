@@ -5,6 +5,7 @@ const Review = require('../models/reviews')
 const catchAsync = require('../utilities/catchAsyncError')
 const expressError = require('../utilities/expressError')
 const Campground = require('../models/campgrounds')
+const {isLoggedIn} = require('../middlewares')
 
 //review validator
 const validateReview = (req, res, next) => {//middleware to validate reviews
@@ -22,7 +23,7 @@ const validateReview = (req, res, next) => {//middleware to validate reviews
 }
 
 //reviews routes
-router.post('', validateReview, catchAsync(async (req, res) => {//handling posting a new review
+router.post('', isLoggedIn, validateReview, catchAsync(async (req, res) => {//handling posting a new review
     const { id } = req.params
     const campground = await Campground.findById(id)
     const review = new Review(req.body.review)
@@ -33,7 +34,7 @@ router.post('', validateReview, catchAsync(async (req, res) => {//handling posti
     res.redirect(`/campgrounds/${campground._id}`)
 }))
 
-router.delete('/:reviewId', catchAsync(async (req, res) => {//handling deleting a review
+router.delete('/:reviewId', isLoggedIn, catchAsync(async (req, res) => {//handling deleting a review
     const { id, reviewId } = req.params
     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)
