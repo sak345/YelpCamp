@@ -30,7 +30,7 @@ const createAdmin = async () => {
 const seedDB = async () => {//function to randomly generate basic information of campgrounds
     await createAdmin();
     await Campground.deleteMany({})
-    const admin = await User.find({ username: 'admin' })
+    const admin = await User.findOne({ username: 'admin' })
     for (let i = 0; i < 50; i++) {
         const city = randomGenerator(cities)
         const price = Math.floor(Math.random() * 30) + 10;
