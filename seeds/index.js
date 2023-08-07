@@ -31,6 +31,11 @@ const createAdmin = async () => {
 
 
 const seedDB = async () => {//function to randomly generate basic information of campgrounds
+    const alreadySeeded = (await Campground.find()).length
+    if (alreadySeeded) { //check if database is already seeded
+        console.log('Database already seeded')
+        return;
+    }
     await createAdmin();
     await Campground.deleteMany({})
     const admin = await User.findOne({ username: 'admin' })
@@ -47,6 +52,7 @@ const seedDB = async () => {//function to randomly generate basic information of
         })
         await camp.save()
     }
+    console.log("Database seeded!")
 }
 
 module.exports = seedDB;
