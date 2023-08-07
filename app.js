@@ -25,16 +25,7 @@ db.once("open", () => {
     console.log("Database connected!")
 })
 
-const alreadySeeded = async () => {//checks if database is already seeded
-    const result = await Campground.find({})
-    return result.length
-}
-
-if (!alreadySeeded()) {//if database is not seeded then seed it
-    seedDB().then(() => {
-        console.log('Database seeded!')
-    });
-}
+seedDB() //seed the database with some random campgrounds
 
 //configurations
 app.engine('ejs', ejsMate)
