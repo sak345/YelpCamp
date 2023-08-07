@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 const Campground = require('../models/campgrounds')
 const User = require('../models/user')
+const Review = require('../models/reviews')
 const cities = require('./cities')
 const { descriptors, places } = require('./seedHelpers')
+
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
 
@@ -16,6 +18,7 @@ db.once("open", () => {
 const randomGenerator = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
 const createAdmin = async () => {
+    await Review.deleteMany({})
     await User.deleteMany({})
     const admin = new User({
         username: 'admin',
