@@ -43,9 +43,5 @@ As part of my efforts to enhance the visual appeal of YelpCamp, I have integrate
 ### 2) Enhancing the Campground Review System
 As you explore the current version of YelpCamp, the campground review system is relatively basic, employing MongoDB data relationships to manage user reviews. While this implementation allows users to add or delete reviews for each campground, I acknowledge room for improvement to enrich the review experience. In the spirit of continuous improvement, I have exciting plans to enhance the campground review system in future updates. Among the forthcoming features, I will introduce a star rating system instead of a range input and grant authorized members the privilege to edit their reviews. This capability will empower users to update their thoughts and experiences, ensuring that the reviews remain up-to-date and relevant.
 
-### 3) Data resets on server restart:  
-Whenever the server restarts, the data for all campgrounds, their reviews, and user accounts (excluding the admin account) will be automatically reset, and new campgrounds with new names will be created. This may seem like a drawback, but this measure has been implemented to facilitate code sharing and testing. By clearing the data upon server restart, we ensure that anyone who receives the code can easily set up their environment without worrying about existing data interfering with their experience.
-Rest assured, I acknowledge this limitation, and it will be fixed once the code is deployed and no longer works on a local server.
-
 
 #### For a comprehensive list and details of all the latest features, improvements, and bug fixes, please visit the [Releases](https://github.com/sak345/YelpCamp/releases) section.
