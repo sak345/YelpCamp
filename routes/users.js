@@ -34,7 +34,7 @@ router.get('/login', notLoggedIn, (req, res) => {
 
 //handle a login request
 router.post('/login', notLoggedIn, storeReturnTo, passport.authenticate('local', {
-    failureFlash: { type: 'err', message: 'Username or password incorrect.' },
+    failureFlash: { type: 'err', message: 'Username or password is incorrect.' },
     failureRedirect: '/login'
 }), (req, res) => {
     const redirectUrl = res.locals.returnTo || '/campgrounds'
@@ -54,7 +54,7 @@ router.get('/logout', (req, res, next) => {
         if (err) {
             next(err);
         }
-        req.flash('success', 'Goodbye! Have a good day ;)')
+        req.flash('success', 'Logged out! Have a good day ;)')
         res.redirect('/campgrounds')
     })
 

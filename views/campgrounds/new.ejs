@@ -9,29 +9,29 @@
       novalidate
     >
       <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+        <label for="title" class="form-label">Title (atleast 5 characters)</label>
         <input 
         type="text" 
         class="form-control" 
         id="title"
         name="campground[title]" 
-        placeholder="Name of Campground (min. 5 characters)" 
+        placeholder="Eg: MyCamp " 
         required minlength="5" 
         maxlength="30" <% if(formData && formData.length){//displaying this value if the user made a mistake and already filled some data in the form %> 
          value = "<%= formData[0].campground.title %>" 
         <% } %> />
         <div class="invalid-feedback">
-          Please provide a valid name of atleast 5 and max. 30 characters
+          Please provide a valid name of atleast 5 and atmost 30 characters
         </div>
       </div>
       <div class="mb-3">
-        <label for="location" class="form-label">Location</label>
+        <label for="location" class="form-label">Location (City, State, Country)</label>
         <input
           type="text"
           class="form-control"
           id="location"
           name="campground[location]"
-          placeholder="Location of Campground"
+          placeholder="Eg: Chicago, Illinois, USA"
           required
           <%if(formData&&formData.length){%>
             value = "<%= formData[0].campground.location %>"
@@ -47,7 +47,7 @@
           class="form-control"
           id="img"
           name="campground[img]"
-          placeholder="Image of Campground"
+          placeholder="Image URL"
           required
           <%if(formData&&formData.length){%>
             value = "<%= formData[0].campground.img %>" 
@@ -64,7 +64,7 @@
             id="price"
             class="form-control"
             aria-label="Amount (to the nearest dollar)"
-            placeholder="Price of Campground"
+            placeholder="Eg: 5"
             name="campground[price]"
             required
             min="0"
@@ -83,7 +83,7 @@
           class="form-control"
           id="description"
           name="campground[description]"
-          placeholder="Describe your campground in atleast 20 characters..."
+          placeholder="Describe your campground for the users in atleast 20 characters..."
           rows="3"
           required
           minlength="20"

@@ -23,6 +23,7 @@ const seedDB = async () => {//function to randomly generate basic information of
         const price = Math.floor(Math.random() * 30) + 10;
         const camp = new Campground({
             title: `${randomGenerator(descriptors)} ${randomGenerator(places)}`,
+            author: '64d0b18767f3890cb2638e7b',
             location: `${city.city}, ${city.state} `,
             img: 'https://source.unsplash.com/collection/429524',
             description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione aspernatur id delectus ex corporis sed dolorem at voluptatibus ipsa quo accusantium mollitia officia, consectetur, explicabo eum inventore! Voluptas, consequuntur velit.',

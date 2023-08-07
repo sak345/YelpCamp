@@ -59,8 +59,10 @@ passport.deserializeUser(User.deserializeUser());
 //middleware to store data inside res.locals to make it visible to /views dir.
 app.use((req, res, next) => {
     if (!['/login', '/signUp', '/'].includes(req.originalUrl)) {
-        if (req.originalUrl.includes('/reviews')) {
-            req.session.returnTo = req.originalUrl.split('/reviews')[0];
+        if (req.originalUrl.includes('/reviews') || req.originalUrl.includes('/edit') || req.originalUrl.includes('?_method=DELETE')) {
+            req.session.returnTo = req.originalUrl.split('/edit')[0];
+            req.session.returnTo = req.session.returnTo.split('?_method=DELETE')[0];
+            req.session.returnTo = req.session.returnTo.split('/reviews')[0];
         } else {
             req.session.returnTo = req.originalUrl
         }

@@ -7,7 +7,10 @@
         <img src="<%= camp.img %>" class="d-block w-100 rounded" alt="..." />
       </div>
       <div class="card-body">
+        <div class="d-flex justify-content-between my-2">
         <h5 class="card-title"><%= camp.title%></h5>
+        <h5 class="text-muted">Posted by: <i><%= camp.author.username %></i></h5>
+      </div>
         <p class="card-text"><%= camp.description %></p>
       </div>
       <ul class="list-group list-group-flush">
@@ -19,6 +22,7 @@
         </li>
         <li class="list-group-item">$<%= camp.price %> /night</li>
       </ul>
+      <%if(currUser && camp.author.equals(currUser._id)){ %>
       <div class="card-body">
         <a
           href="/campgrounds/<%= camp._id %>/edit"
@@ -33,6 +37,7 @@
           <button class="btn btn-danger">Delete</button>
         </form>
       </div>
+      <% } %>
     </div>
 
     <h2 class="my-4">Reviews</h2>
@@ -46,11 +51,13 @@
         <div class="border rounded m-2 p-2">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Rating: <%= review.rating %></h5>
+            <h5 class="text-muted">By: <%= review.author.username %></h5>
           </div>
 
           <div class="overflow-auto text-wrap p-2" style="max-height: 10rem">
             <p><%= review.body%></p>
           </div>
+          <% if(currUser && review.author.equals(currUser._id)){ %>
           <div class="d-flex w-100 justify-content-end">
             <form
               action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=DELETE"
@@ -59,6 +66,7 @@
               <button class="btn btn-danger btn-sm">Delete</button>
             </form>
           </div>
+          <% } %>
         </div>
 
         <% } %><% } else{ %>
@@ -73,6 +81,7 @@
       <% } %>
     </div>
 
+    <% if(currUser){ %>
     <h2 class="my-4">Leave a review</h2>
     <hr />
 
@@ -121,5 +130,6 @@
         <button class="btn btn-success">Submit</button>
       </div>
     </form>
+  <% } %>
   </div>
 </div>

@@ -1,32 +1,16 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true });
-const { reviewSchema } = require('../schemas.js')
 const Review = require('../models/reviews')
 const catchAsync = require('../utilities/catchAsyncError')
-const expressError = require('../utilities/expressError')
 const Campground = require('../models/campgrounds')
-const {isLoggedIn} = require('../middlewares')
-
-//review validator
-const validateReview = (req, res, next) => {//middleware to validate reviews
-    const userInputs = req.body
-    const { error } = reviewSchema.validate(userInputs)
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        req.flash('err', 'Please provide your review in atleast 10 characters')
-        req.flash('formData', userInputs)//storing the userInputs in the current session so that we can pre-fill the form after displaying the flash message
-        res.redirect('back')
-        //throw new expressError(msg, 400)//can be used to throw an error and display msg on new page instead of flash message
-    } else {
-        next()
-    }
-}
+const { isLoggedIn, validateReview, isReviewAuthor } = require('../middlewares')
 
 //reviews routes
 router.post('', isLoggedIn, validateReview, catchAsync(async (req, res) => {//handling posting a new review
     const { id } = req.params
     const campground = await Campground.findById(id)
     const review = new Review(req.body.review)
+    review.author = req.user._id
     campground.reviews.push(review)
     await campground.save()
     await review.save()
@@ -34,7 +18,7 @@ router.post('', isLoggedIn, validateReview, catchAsync(async (req, res) => {//ha
     res.redirect(`/campgrounds/${campground._id}`)
 }))
 
-router.delete('/:reviewId', isLoggedIn, catchAsync(async (req, res) => {//handling deleting a review
+router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(async (req, res) => {//handling deleting a review
     const { id, reviewId } = req.params
     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)

@@ -7,6 +7,10 @@ const campgroundSchema = new Schema({
         type: String,
         required: [true, "Name cannot be empty."]
     },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     price: {
         type: Number,
         required: [true, "Price cannot be empty."]
