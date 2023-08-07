@@ -38,13 +38,4 @@ To provide an engaging and visually captivating browsing experience, I plan to c
 I will introduce enhanced search and filtering options to empower users to find their ideal camping destinations. Users can filter campgrounds based on criteria such as location, amenities, ratings, and user reviews. The search functionality will be refined to deliver accurate and relevant results, making it easier for users to discover campgrounds that align with their preferences.
 
 
-## Additional Notes: 
-### 1) Extracting Images from Unsplash API (Discontinued in v0.35 as we are not seeding the data anymore)
-As part of my efforts to enhance the visual appeal of YelpCamp, I have integrated the Unsplash API to provide captivating images for each campground. However, at the moment, the Unsplash API only generates one image per page, resulting in all campgrounds having the same image. I recognize that this limitation impacts the diversity and uniqueness of our campground representations.
-Rest assured. I'm actively working on improving this feature in future releases. I'm exploring ways to leverage advanced techniques that will allow us to extract multiple and relevant images for each campground, enriching the overall experience for our users.
-
-### 2) Enhancing the Campground Review System
-As you explore the current version of YelpCamp, the campground review system is relatively basic, employing MongoDB data relationships to manage user reviews. While this implementation allows users to add or delete reviews for each campground, I acknowledge room for improvement to enrich the review experience.
-In the spirit of continuous improvement, I have exciting plans to enhance the campground review system in future updates. Among the forthcoming features, I will introduce a star rating system instead of a range input and grant authorized members the privilege to edit their reviews. This capability will empower users to update their thoughts and experiences, ensuring that the reviews remain up-to-date and relevant.
-
 #### For a comprehensive list and details of all the latest features, improvements, and bug fixes, please visit the [Releases](https://github.com/sak345/YelpCamp/releases) section.
