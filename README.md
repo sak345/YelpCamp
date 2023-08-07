@@ -20,7 +20,7 @@ Overall, YelpCamp is an ambitious project that aims to create a robust and engag
 3) Type - ```npm install``` or ```npm i``` to install all the required packages. (you can look at all the package dependencies in package.json file).
 4) After all the packages have been successfully installed, type - `cd seeds` to go inside the seeds folder and type `node index.js` to run the index.js file, which will seed the initial random data into the database. You'll see a message `Database Connected, Closing connection` which means the database has been successfully seeded.
 
-5) After the database has been seeded with some initial data, type - ```node app.js``` or ```nodemon app.js``` (if you have nodemon installed globally) to start the server. You'll see this message in the console - ```Serving on port: 3000, Database connected``` which means that the local server has started.
+5) After the database has been seeded with some initial data, go back to the previous directory by typing `cd ..` and then type - ```node app.js``` or ```nodemon app.js``` (if you have nodemon installed globally) to start the server. You'll see this message in the console - ```Serving on port: 3000, Database connected``` which means that the local server has started.
    
 6) Open your web browser and go to - 'http://localhost:3000/campgrounds' and the application will be up! :)
 
