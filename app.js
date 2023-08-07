@@ -12,6 +12,8 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user')
 
+const seedDB = require('./seeds/index')
+
 const campgroundRouter = require('./routes/campgrounds')
 const reviewRouter = require('./routes/reviews')
 const userRouter = require('./routes/users')
@@ -23,6 +25,10 @@ db.on("error", console.error.bind(console, 'Connection Error'))
 db.once("open", () => {
     console.log("Database connected!")
 })
+
+seedDB().then(() => {
+    console.log('Database seeded!')
+});
 
 //configurations
 app.engine('ejs', ejsMate)

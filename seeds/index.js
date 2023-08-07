@@ -10,7 +10,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
 const db = mongoose.connection
 db.on("error", console.error.bind(console, 'Connection Error'))
 db.once("open", () => {
-    console.log("Database connected!")
 })
 
 
@@ -47,7 +46,4 @@ const seedDB = async () => {//function to randomly generate basic information of
     }
 }
 
-seedDB().then(() => {
-    console.log('Closing connection')
-    mongoose.connection.close();
-})
+module.exports = seedDB;
