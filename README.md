@@ -39,7 +39,7 @@ I will introduce enhanced search and filtering options to empower users to find 
 
 
 ## Additional Notes: 
-### 1) Extracting Images from Unsplash API
+### 1) Extracting Images from Unsplash API (Discontinued in v0.35 as we are not seeding the data anymore)
 As part of my efforts to enhance the visual appeal of YelpCamp, I have integrated the Unsplash API to provide captivating images for each campground. However, at the moment, the Unsplash API only generates one image per page, resulting in all campgrounds having the same image. I recognize that this limitation impacts the diversity and uniqueness of our campground representations.
 Rest assured. I'm actively working on improving this feature in future releases. I'm exploring ways to leverage advanced techniques that will allow us to extract multiple and relevant images for each campground, enriching the overall experience for our users.
 
