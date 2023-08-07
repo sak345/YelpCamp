@@ -10,8 +10,6 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
-const User = require('./models/user')
-const Campground = require('./models/campgrounds')
 const seedDB = require('./seeds/index')
 const campgroundRouter = require('./routes/campgrounds')
 const reviewRouter = require('./routes/reviews')
@@ -25,7 +23,8 @@ db.once("open", () => {
     console.log("Database connected!")
 })
 
-seedDB() //seed the database with some random campgrounds
+seedDB()//seed the database with some initial random campgrounds
+
 
 //configurations
 app.engine('ejs', ejsMate)
