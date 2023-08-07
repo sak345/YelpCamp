@@ -11,9 +11,8 @@ const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user')
-
+const Campground = require('./models/campgrounds')
 const seedDB = require('./seeds/index')
-
 const campgroundRouter = require('./routes/campgrounds')
 const reviewRouter = require('./routes/reviews')
 const userRouter = require('./routes/users')
@@ -26,9 +25,16 @@ db.once("open", () => {
     console.log("Database connected!")
 })
 
-seedDB().then(() => {
-    console.log('Database seeded!')
-});
+const alreadySeeded = async () => {//checks if database is already seeded
+    const result = await Campground.find({})
+    return result.length
+}
+
+if (!alreadySeeded()) {//if database is not seeded then seed it
+    seedDB().then(() => {
+        console.log('Database seeded!')
+    });
+}
 
 //configurations
 app.engine('ejs', ejsMate)
