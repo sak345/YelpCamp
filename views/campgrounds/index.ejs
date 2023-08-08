@@ -2,6 +2,10 @@
 <h1 class="text-center">All Campgrounds</h1>
 
 <% for(let camp of camps){ %>
+  <% let sum = 0, count = 0 %>
+  <% for(let review of camp.reviews){ %>
+    <% sum += review.rating %> <% count++ %>
+  <% } %>
 
 <div class="card my-3 bg-dark text-white">
   <div class="row">
@@ -14,9 +18,22 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <a class="text-decoration-none" href="/campgrounds/<%= camp._id %>">
+        
+          <div class="d-flex justify-content-between">
+            <a class="text-decoration-none" href="/campgrounds/<%= camp._id %>">
           <h5 class="card-title"><%= camp.title %></h5>
         </a>
+          <% if(count){ %>
+            <h5>
+              <p class="starability-result card-text" data-rating="<%= Math.round((sum/count)) %>">
+                    Rated: <%= Math.round((sum/count)) %> stars
+              </p>
+            </h5>
+          <% }else{  %>
+            <h5 class="text-white fs-6"><i>Not yet rated</i></h5>
+          <% } %>
+          
+          </div>
         <p class="card-text">
           <span
             ><svg

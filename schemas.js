@@ -18,7 +18,7 @@ module.exports.campgroundSchema = Joi.object({//schema to vaildate campgrounds
 
 module.exports.reviewSchema = Joi.object({//schema to validate reviews
     review: Joi.object({
-        rating: Joi.number().min(0).max(5).required(),
+        rating: Joi.number().min(1).max(5).required(),
         body: Joi.string().min(10).trim().required()
     }).required()
 })
