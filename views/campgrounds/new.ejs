@@ -7,6 +7,7 @@
       method="post"
       class="needs-validation"
       novalidate
+      enctype="multipart/form-data"
     >
       <div class="mb-3">
         <label for="title" class="form-label">Title (atleast 5 characters)</label>
@@ -41,19 +42,8 @@
         <div class="invalid-feedback">Please provide a valid location</div>
       </div>
       <div class="mb-3">
-        <label for="img" class="form-label">Image URL</label>
-        <input
-          type="url"
-          class="form-control"
-          id="img"
-          name="campground[img]"
-          placeholder="Image URL"
-          required
-          <%if(formData&&formData.length){%>
-            value = "<%= formData[0].campground.img %>" 
-          <% } %>
-        />
-        <div class="invalid-feedback">Please provide a valid URL</div>
+        <label for="img" class="form-label">Upload images for your campground</label>
+        <input class="form-control form-file" type="file" id="img" name="campground[img]" multiple>
       </div>
       <div class="mb-3">
         <label for="price" class="form-label">Price</label>

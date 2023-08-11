@@ -1,4 +1,5 @@
 const Campground = require('../models/campgrounds')
+const { cloudinary } = require('../cloudinary')
 
 module.exports.allCampgrounds = async (req, res) => {//displays all campgrounds
     const camps = await Campground.find({}).populate('reviews')
@@ -25,8 +26,10 @@ module.exports.showCampground = async (req, res) => {//displays a particular cam
 
 module.exports.createCampground = async (req, res, next) => {//adds a new campground
     const newCamp = new Campground(req.body.campground)
+    newCamp.img = req.files.map(f => ({ url: f.path, filename: f.filename }))
     newCamp.author = req.user._id
     await newCamp.save()
+    console.log(newCamp)
     req.flash('success', 'Successfully added a new campground!')
     res.redirect(`/campgrounds/${newCamp._id}`)
 }
@@ -41,7 +44,22 @@ module.exports.renderEditForm = async (req, res) => {//opens a form to edit a pa
 }
 
 module.exports.updateCampground = async (req, res) => {//edit request to a particular campground
-    await Campground.findByIdAndUpdate(req.params.id, req.body.campground)
+    const campground = await Campground.findByIdAndUpdate(req.params.id, req.body.campground)
+    console.log(req.files)
+    campground.img.push(... (req.files.map(f => ({ url: f.path, filename: f.filename }))))
+    await campground.save();
+    if (req.body.deleteImages) {
+        if (campground.img.length === req.body.deleteImages.length && req.files.length === 0) {
+            req.flash('err', 'You cannot delete all images of your campground!')
+            return res.redirect(`/campgrounds/${req.params.id}/edit`)
+        }
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename)
+        }
+
+        await campground.updateOne({ $pull: { img: { filename: { $in: req.body.deleteImages } } } })
+
+    }
     req.flash('success', 'Changes Saved!')
     res.redirect(`/campgrounds/${req.params.id}`)
 }

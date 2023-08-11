@@ -30,29 +30,52 @@ const createAdmin = async () => {
 }
 
 
+
+const fetchImage = async (collectionId) => {
+    const response = await fetch(`https://source.unsplash.com/collection/${collectionId}`)
+    return response.url
+}
+
+
 const seedDB = async () => {//function to randomly generate basic information of campgrounds
     const alreadySeeded = (await Campground.find()).length
     if (alreadySeeded) { //check if database is already seeded
         console.log('Database already seeded')
         return;
     }
+    console.log("Please wait while we seed the database...")
     await createAdmin();
     await Campground.deleteMany({})
     const admin = await User.findOne({ username: 'admin' })
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 30; i++) {
+
         const city = randomGenerator(cities)
         const price = Math.floor(Math.random() * 30) + 10;
         const camp = new Campground({
             title: `${randomGenerator(descriptors)} ${randomGenerator(places)}`,
             author: admin._id,
             location: `${city.city}, ${city.state} `,
-            img: 'https://source.unsplash.com/collection/429524',
+            img: [
+                {
+                    url: await fetchImage(429524),
+                    filename: `${randomGenerator(descriptors)}${randomGenerator(places)}-1`
+                },
+                {
+                    url: await fetchImage(9046579),
+                    filename: `${randomGenerator(descriptors)}${randomGenerator(places)}-2`
+                }
+            ],
             description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione aspernatur id delectus ex corporis sed dolorem at voluptatibus ipsa quo accusantium mollitia officia, consectetur, explicabo eum inventore! Voluptas, consequuntur velit.',
             price
         })
         await camp.save()
+
+
+        process.stdout.clearLine(); // Clear the current line in the console
+        process.stdout.cursorTo(0); // Move the cursor to the beginning of the line
+        process.stdout.write(`Completed: ${i + 1}/30`); // Write the updated value
     }
-    console.log("Database seeded!")
+    console.log("\nDatabase seeded!\nVisit: http://localhost:3000/campgrounds & start exploring. :)")
 }
 
 module.exports = seedDB;

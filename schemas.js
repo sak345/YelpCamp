@@ -8,12 +8,13 @@ module.exports.campgroundSchema = Joi.object({//schema to vaildate campgrounds
             .trim()
             .required(),
         location: Joi.string().trim().required(),
-        img: Joi.string().trim().required(),
+        img: Joi.array().max(5),
         price: Joi.number().min(0).required(),
         description: Joi.string().min(20).trim().required(),
         reviews: Joi.array()
 
-    }).required()
+    }).required(),
+    deleteImages: Joi.array()
 })
 
 module.exports.reviewSchema = Joi.object({//schema to validate reviews
