@@ -36,6 +36,17 @@ const campgroundSchema = new Schema({
         type: String,
         required: [true, "Location cannot be empty."]
     },
+    geometry: {
+        type: {
+            type: 'String',
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
     reviews: [
         {
             type: Schema.Types.ObjectId,

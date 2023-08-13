@@ -4,6 +4,7 @@ const User = require('../models/user')
 const Review = require('../models/reviews')
 const cities = require('./cities')
 const { descriptors, places } = require('./seedHelpers')
+const axios = require('axios');
 
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
@@ -32,8 +33,8 @@ const createAdmin = async () => {
 
 
 const fetchImage = async (collectionId) => {
-    const response = await fetch(`https://source.unsplash.com/collection/${collectionId}`)
-    return response.url
+    const response = await axios.get(`https://source.unsplash.com/collection/${collectionId}`)
+    return response.request.res.responseUrl
 }
 
 
@@ -66,7 +67,14 @@ const seedDB = async () => {//function to randomly generate basic information of
                 }
             ],
             description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione aspernatur id delectus ex corporis sed dolorem at voluptatibus ipsa quo accusantium mollitia officia, consectetur, explicabo eum inventore! Voluptas, consequuntur velit.',
-            price
+            price,
+            geometry: {
+                type: 'Point',
+                coordinates: [
+                    city.longitude,
+                    city.latitude,
+                ]
+            },
         })
         await camp.save()
 
