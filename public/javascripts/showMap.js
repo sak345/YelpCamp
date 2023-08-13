@@ -1,5 +1,5 @@
 
-mapboxgl.accessToken = mapBoxToken;
+mapboxgl.accessToken = pk.eyJ1Ijoic2FrMzQ1IiwiYSI6ImNsbDd0b2IzcTB4NXYzZW53d201Nm5henAifQ.cFu2pzhQbL1Bza21vBBc-w;
 const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/outdoors-v12', // style URL
