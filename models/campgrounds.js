@@ -14,6 +14,8 @@ imageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/c_fit,h_300,w_300')
 });
 
+const opts = { toJSON: { virtuals: true } }
+
 const campgroundSchema = new Schema({
     title: {
         type: String,
@@ -53,7 +55,12 @@ const campgroundSchema = new Schema({
             ref: 'Review'
         }
     ]
-})
+}, opts)
+
+campgroundSchema.virtual('properties.popupMarkup').get(function () {
+    return `<strong><a href=/campgrounds/${this._id} class=text-decoration-none>${this.title}</a></strong>
+    <p>${this.description.substring(0, 20)}...</p > `
+});
 
 campgroundSchema.post('findOneAndDelete', async function (camp) {//query middleware to delete all reviews on that campground
     if (camp.reviews.length) {
