@@ -1,8 +1,20 @@
+
 <%- layout('layouts/boilerplate') %>
-<div class="row text-white mb-3 rounded">
-  <div class="col-6 offset-3 bg-dark rounded px-5">
-    <h1 class="text-center my-3">New Campground</h1>
-    <form
+
+<div class="row text-white m-auto rounded">
+  <div
+    class="col-6 offset-3 px-5 mt-2 container flex-column align-items-center justify-content-center mb-3"
+  >
+    <div class="card text-bg-light shadow p-3">
+      <div class="card-title">
+        <h3>New Campground</h3>
+      </div>
+      <img
+        class="card-image-top rounded"
+        src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+      />
+      <div class="card-body">
+        <form
       action="/campgrounds"
       method="post"
       class="needs-validation"
@@ -83,9 +95,11 @@
           Please provide a valid description of minimum 20 characters
         </div>
       </div>
-      <div class="mb-3">
-        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      <div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
       </div>
     </form>
+      </div>
+    </div>
   </div>
 </div>

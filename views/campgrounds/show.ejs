@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-10 m-auto mb-3">
     
-    <div class="card mb-3">
+    <div class="card mb-3 shadow text-bg-light">
       <div id="campgroundCorousel" class="carousel slide">
         <div class="carousel-indicators">
           <% for(let i = 1; i <= camp.img.length; i++){ %>
@@ -42,7 +42,7 @@
             href="https://www.google.com/maps/place/<%= camp.location.split(' ').join('') %>"
             ><%= camp.location %></a
           >
-          <div id='map' class="rounded my-3 border border-black" style='width: 890px; height: 300px;'></div>
+          <div id='show-map' class="rounded my-3 border border-black"></div>
         </li>
       </ul>
       <%if(currUser && camp.author.equals(currUser._id)){ %>
