@@ -12,6 +12,7 @@ module.exports.createNewUser = async (req, res, next) => {
         if (err) {
             return next(err);
         }
+        console.log(registeredUser)
         req.flash('success', "You've been successfully registered to YelpCamp community!")
         res.redirect('/campgrounds')
     })

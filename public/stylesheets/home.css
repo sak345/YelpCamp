@@ -1,9 +1,10 @@
-body{
+body {
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1542332213-1d277bf3d6c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80");
     background-size: cover;
     background-position: center;
 }
+
 .cover-container {
     max-width: 60vw;
 }
@@ -31,7 +32,7 @@ body{
     background: none;
 }
 
-.btn-secondary:hover{
+.btn-secondary:hover {
     text-decoration: #333;
     text-shadow: none;
 }

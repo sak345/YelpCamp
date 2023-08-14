@@ -23,7 +23,7 @@ module.exports.notLoggedIn = ((req, res, next) => { //middleware to check if use
 
 //campgrounds middlewares
 const Campground = require('./models/campgrounds')
-const { campgroundSchema, reviewSchema } = require('./schemas.js')
+const { campgroundSchema, reviewSchema, userSchema } = require('./schemas.js')
 
 module.exports.isAuthor = (async (req, res, next) => {//middleware to check if the current user is the author of that campground
     const { id } = req.params
@@ -77,3 +77,16 @@ module.exports.isReviewAuthor = (async (req, res, next) => {//middleware to chec
     }
     next();
 })
+
+//user validator
+module.exports.validateUser = (req, res, next) => {
+    const userInputs = req.body
+    const { error } = userSchema.validate(userInputs)
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        req.flash('err', msg)
+        res.redirect('/signup')
+    } else {
+        next();
+    }
+}

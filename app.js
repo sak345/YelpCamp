@@ -19,6 +19,8 @@ const seedDB = require('./seeds/index')
 const campgroundRouter = require('./routes/campgrounds')
 const reviewRouter = require('./routes/reviews')
 const userRouter = require('./routes/users')
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet')
 
 //connecting database
 mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
@@ -40,14 +42,17 @@ app.set('views', path.join(__dirname, '/views'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, '/public')))
+app.use(mongoSanitize());
 
 //session configuration
 const sessionConfig = {
+    name: 'session',
     secret: 'thiswillbeupdatedinthefuture',
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        //secret: true,
         expires: Date.now() + 1000 * 60 * 60 * 24,
         maxAge: 1000 * 60 * 60 * 24
     }
@@ -55,6 +60,8 @@ const sessionConfig = {
 app.use(session(sessionConfig))
 
 app.use(flash())
+
+app.use(helmet({ contentSecurityPolicy: false }))
 
 //passport configuration for user authentication
 app.use(passport.initialize());

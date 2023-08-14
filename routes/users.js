@@ -2,13 +2,13 @@ const express = require('express')
 const router = express.Router()
 const passport = require('passport')
 const catchAsync = require('../utilities/catchAsyncError')
-const { notLoggedIn, storeReturnTo } = require('../middlewares')
+const { notLoggedIn, storeReturnTo, validateUser } = require('../middlewares')
 const userController = require('../controllers/users')
 
 //handle a signup request
 router.route('/signUp')
     .get(notLoggedIn, userController.renderSignupForm)
-    .post(notLoggedIn, catchAsync(userController.createNewUser))
+    .post(notLoggedIn, validateUser, catchAsync(userController.createNewUser))
 
 //hadnle a login request
 router.route('/login')
