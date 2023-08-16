@@ -44,7 +44,7 @@ module.exports.validateCampground = (req, res, next) => {//middleware to validat
         req.flash('err', msg)
         req.flash('formData', userInputs) //storing the userInputs in the current session so that we can pre-fill the form after displaying the flash message
         // throw new expressError(msg, 400) //can be used to throw an error and display msg on new page instead of flash message
-        return res.redirect('back')//redirecting to the previous page
+        return res.redirect(req.originalUrl.split('?_method=')[0])//redirecting to the same page
     } else {
         next();
     }
@@ -59,9 +59,9 @@ module.exports.validateReview = (req, res, next) => {//middleware to validate re
     const { error } = reviewSchema.validate(userInputs)
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
-        req.flash('err', 'Please provide your review in atleast 10 characters')
+        req.flash('err', msg)
         req.flash('formData', userInputs)//storing the userInputs in the current session so that we can pre-fill the form after displaying the flash message
-        res.redirect('back')
+        res.redirect(req.originalUrl.split('/reviews')[0])
         //throw new expressError(msg, 400)//can be used to throw an error and display msg on new page instead of flash message
     } else {
         next()

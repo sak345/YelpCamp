@@ -15,22 +15,23 @@ const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('./models/user')
-const seedDB = require('./seeds/index')
 const campgroundRouter = require('./routes/campgrounds')
 const reviewRouter = require('./routes/reviews')
 const userRouter = require('./routes/users')
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet')
+const dbUrl = process.env.db_url || 'mongodb://127.0.0.1:27017/yelpCamp'
+
+const MongoStore = require('connect-mongo');
 
 //connecting database
-mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
+//'mongodb://127.0.0.1:27017/yelpCamp'
+mongoose.connect(dbUrl)
 const db = mongoose.connection
 db.on("error", console.error.bind(console, 'Connection Error'))
 db.once("open", () => {
     console.log("Database connected!")
 })
-
-seedDB()//seed the database with some initial random campgrounds
 
 
 //configurations
@@ -44,10 +45,25 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, '/public')))
 app.use(mongoSanitize());
 
+const secret = process.env.secret || 'thiswillbeupdatedinthefuture'
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret
+    }
+})
+
+store.on("error", function (e) {
+    console.log("Session store error!", e)
+})
+
 //session configuration
 const sessionConfig = {
+    store,
     name: 'session',
-    secret: 'thiswillbeupdatedinthefuture',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -84,7 +100,7 @@ app.use((req, res, next) => {
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('err')
     res.locals.formData = req.flash('formData')//used to store the formData entered by user to pre-fill the form with this data
-    res.locals.currUser = req.user;
+    res.locals.currUser = req.user || false;
     next();
 })
 

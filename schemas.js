@@ -52,7 +52,7 @@ module.exports.userSchema = Joi.object({
     username: Joi.string()
         .alphanum()
         .min(3)
-        .max(30)
+        .max(10)
         .escapeHTML()
         .trim()
         .required(),

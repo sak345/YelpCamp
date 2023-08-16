@@ -3,14 +3,14 @@
 
 <div class="row text-white m-auto rounded">
   <div
-    class="col-6 offset-3 px-5 mt-2 container flex-column align-items-center justify-content-center mb-3"
+    class="col-md-6 offset-md-3 px-5 mt-2 container flex-column align-items-center justify-content-center mb-3"
   >
     <div class="card text-bg-light shadow p-3">
       <div class="card-title">
         <h3>New Campground</h3>
       </div>
       <img
-        class="card-image-top rounded"
+        class="card-image-top rounded img-fluid"
         src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
       />
       <div class="card-body">
@@ -55,8 +55,8 @@
       </div>
       <div class="mb-3">
         <label for="img" class="form-label">Upload images for your campground</label>
-        <input class="form-control form-file" type="file" id="img" name="campground[img]" multiple required>
-        <div class="invalid-feedback">Atleast 1 image is required</div>
+        <input class="form-control form-file" type="file" id="img" name="campground[img]" accept=".jpg, .jpeg, .png" multiple required onchange="validateFileCount(this)">
+        <div class="invalid-feedback">Please upload min. 1 and max. 6 images</div>
       </div>
       <div class="mb-3">
         <label for="price" class="form-label">Price</label>
@@ -103,3 +103,8 @@
     </div>
   </div>
 </div>
+  
+  
+  
+  
+  

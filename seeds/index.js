@@ -6,15 +6,13 @@ const cities = require('./cities')
 const { descriptors, places } = require('./seedHelpers')
 const axios = require('axios');
 
-
-mongoose.connect('mongodb://127.0.0.1:27017/yelpCamp')
-
-
+const dbUrl = 'mongodb+srv://sak345:BbhL5BtzUfi4nS4d@cluster0.tkq6crs.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(dbUrl)
 const db = mongoose.connection
 db.on("error", console.error.bind(console, 'Connection Error'))
 db.once("open", () => {
+    console.log("Database connected!")
 })
-
 
 const randomGenerator = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
@@ -39,11 +37,11 @@ const fetchImage = async (collectionId) => {
 
 
 const seedDB = async () => {//function to randomly generate basic information of campgrounds
-    const alreadySeeded = (await Campground.find()).length
-    if (alreadySeeded) { //check if database is already seeded
-        console.log('Database already seeded')
-        return;
-    }
+    // const alreadySeeded = (await Campground.find()).length
+    // if (alreadySeeded) { //check if database is already seeded
+    //     console.log('Database already seeded')
+    //     return;
+    // }
     console.log("Please wait while we seed the database...")
     await createAdmin();
     await Campground.deleteMany({})
@@ -85,5 +83,7 @@ const seedDB = async () => {//function to randomly generate basic information of
     }
     console.log("\nDatabase seeded!\nVisit: http://localhost:3000/campgrounds & start exploring. :)")
 }
+
+seedDB()
 
 module.exports = seedDB;

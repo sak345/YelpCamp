@@ -30,9 +30,9 @@
       </div>
       <div class="card-body">
         <div class="d-flex justify-content-between my-2">
-        <h5 class="card-title"><%= camp.title%></h5>
-        <h5 class="text-muted">Posted by: <i><%= camp.author.username %></i></h5>
-      </div>
+          <h5 class="card-title"><%= camp.title%></h5>
+          <h5 class="text-muted">Posted by: <i><%= camp.author.username %></i></h5>
+        </div>
         <p class="card-text"><%= camp.description %></p>
       </div>
       <ul class="list-group list-group-flush">
@@ -71,30 +71,35 @@
         <% let sum = 0, count = 0 %> <% if(camp.reviews.length){ %> <% for(let
         review of camp.reviews){ %> <% sum += review.rating %> <% count++ %>
 
-        <div class="border rounded m-2 p-2">
-          <div class="d-flex w-100 justify-content-between">
-            
-            <h5 class="mb-1 d-flex">Rating: 
-              <p class="starability-result mx-3" data-rating="<%= review.rating %>">
-                Rated: <%= review.rating%> stars
-              </p>
-            </h5>
-            <h5 class="text-muted">By: <%= review.author.username %></h5>
+        <div class="card border rounded m-2 p-2">
+          <div class="card-header rounded mb-2">
+            <h5>By: <%= review.author.username %></h5>
           </div>
-
-          <div class="overflow-auto text-wrap p-1" style="max-height: 10rem">
-            <p><%= review.body%></p>
+          <div class="card-title">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1 d-flex text-muted">Rating: 
+                <p class="starability-result mx-3" style="width: 100%; height: 100%;" data-rating="<%= review.rating %>">
+                  Rated: <%= review.rating%> stars
+                </p>
+              </h5>
+              
+            </div>
           </div>
-          <% if(currUser && review.author.equals(currUser._id)){ %>
-          <div class="d-flex w-100 justify-content-end">
-            <form
-              action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=DELETE"
-              method="post"
-            >
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </form>
-          </div>
-          <% } %>
+          <div class="card-body">
+            <div class="overflow-auto text-wrap" style="max-height: 10rem">
+              <p><%= review.body%></p>
+            </div>
+            <% if(currUser && review.author.equals(currUser._id)){ %>
+            <div class="d-flex w-100 justify-content-end">
+              <form
+                action="/campgrounds/<%= camp._id %>/reviews/<%= review._id %>?_method=DELETE"
+                method="post"
+              >
+                <button class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </div>
+            <% } %>
+        </div>
         </div>
 
         <% } %><% } else{ %>
