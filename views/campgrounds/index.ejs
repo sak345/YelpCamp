@@ -3,7 +3,6 @@
   class="rounded border border-black"
   id="cluster-map"
 ></div>
-
 <div class="mt-4">
   <div class="me-auto">
     <h1 class="text-center">All Campgrounds</h1>
@@ -15,6 +14,7 @@
         <select id="sort" class="form-select" name="sort" style="width: 100px;">
           <option value="None" <%= sort === 'None' ? "selected" : '' %>>None</option>
           <option value="Rating" <%= sort === 'Rating' ? "selected" : '' %>>Rating</option>
+          <option value="Reviews" <%= sort === 'Reviews' ? "selected" : '' %>>No. of Reviews</option>
         </select>
       </div>
       <div class="col">
@@ -26,7 +26,6 @@
     </form>
   </div>
 </div>
-
 
 <% for(let camp of camps){ %> <% let sum = 0, count = 0 %> <% for(let review of
 camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
