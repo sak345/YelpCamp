@@ -1,7 +1,7 @@
 <%- layout('layouts/boilerplate') %>
 
 <div class="row">
-  <div class="col-10 m-auto mb-3">
+  <div class="col-lg-10 m-auto mb-3">
     
     <div class="card mb-3 shadow text-bg-light">
       <div id="campgroundCorousel" class="carousel slide">
@@ -67,11 +67,11 @@
     <hr />
 
     <div class="mb-3">
-      <div class="list-group m-3 overflow-auto" style="max-height: 30rem">
+      <div class="list-group my-3 overflow-auto" style="max-height: 30rem">
         <% let sum = 0, count = 0 %> <% if(camp.reviews.length){ %> <% for(let
         review of camp.reviews){ %> <% sum += review.rating %> <% count++ %>
 
-        <div class="card border rounded m-2 p-2">
+        <div class="card border rounded m-2">
           <div class="card-header rounded mb-2">
             <h5>By: <%= review.author.username %></h5>
           </div>
