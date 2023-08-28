@@ -1,0 +1,124 @@
+<%- layout('layouts/boilerplate') %>
+<div
+  class="rounded border border-black"
+  id="cluster-map"
+></div>
+
+
+<div class="mt-4">
+  <div class="me-auto">
+    <!-- All Campgrounds Heading -->
+    <h1 class="text-center">All Campgrounds</h1>
+    
+  </div>
+  
+  
+  <div class="mt-2  d-flex justify-content-between align-items-center">
+    <label for="sort" class="form-label mt-2 me-2 ms-auto">Sort by: </label>
+    <!-- Sort By and Search Form -->
+    <form action="/campgrounds" method="get" class="row g-3 align-items-center" id="sortForm">
+      <!-- Sort By Label and Select Input -->
+      <div class="col-auto justify-content-between">
+        <select id="sort" class="form-select" name="sort" style="width: 100px;">
+          <option value="None" <%= sort === 'None' ? "selected" : '' %>>None</option>
+          <option value="Rating" <%= sort === 'Rating' ? "selected" : '' %>>Rating</option>
+          <option value="Reviews" <%= sort === 'Reviews' ? "selected" : '' %>>No. of Reviews</option>
+        </select>
+      </div>
+
+      <!-- Search Input and Button -->
+      <div class="col">
+        <div class="input-group">
+          <input type="search" name="search" id="search" placeholder="Search name or location" value="<%= search %>" class="form-control" style="max-width: 100%;">
+          <button class="btn btn-primary mt-md-0">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<% for(let camp of camps){ %> <% let sum = 0, count = 0 %> <% for(let review of
+camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
+
+<div class="card my-3 text-bg-light shadow text-black">
+  <div class="row">
+    <div class="col-md-4">
+      <img
+        crossorigin="anonymous"
+        src="<%= camp.img[0].thumbnail %>"
+        class="card-img-top img-fluid img-thumbnail rounded border-black"
+        alt="..."
+        style="max-height: 250px; min-height: 250px"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <a class="text-decoration-none" href="/campgrounds/<%= camp._id %>">
+            <h5 class="card-title"><%= camp.title %></h5>
+          </a>
+          <% if(count){ %>
+          <h5>
+            <p
+              class="starability-result card-text"
+              data-rating="<%= Math.round((sum/count)) %>"
+            >
+              Rated: <%= Math.round((sum/count)) %> stars
+            </p>
+          </h5>
+          <% }else{ %>
+          <h5 class="fs-6"><i>Not yet rated</i></h5>
+          <% } %>
+        </div>
+        <p class="card-text">
+          <span
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-geo-alt"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"
+              />
+              <path
+                d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+              /></svg
+          ></span>
+          <a
+            class="text-muted link-offset-2 link-offset-2-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+            href="https://www.google.com/maps/place/<%= camp.location.split(' ').join('') %>"
+            ><small><%= camp.location %></small></a
+          >
+        </p>
+        <p class="card-text"><%= camp.description %></p>
+        <a href="/campgrounds/<%= camp._id %>" class="btn btn-primary"
+          >View Details</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<% } %>
+
+<script>
+  const mapBoxToken = '<%- process.env.mapbox_token%>'
+  const campgrounds = {features: <%- JSON.stringify(camps) %>}
+</script>
+<script src="/javascripts/clusterMap.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("sortForm");
+    const selectElement = document.getElementById("sort");
+
+    selectElement.addEventListener("change", function () {
+      form.submit(); // Automatically submit the form when an option is selected
+    });
+  });
+</script>
+
