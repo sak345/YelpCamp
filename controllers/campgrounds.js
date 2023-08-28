@@ -56,6 +56,10 @@ module.exports.allCampgrounds = async (req, res) => {//displays all campgrounds
                 return 0;
             }
         })
+    } else if (req.query.sort == "Reviews" && camps.length > 0) {
+        camps.sort((camp1, camp2) => {
+            return camp2.reviews.length - camp1.reviews.length;
+        })
     }
 
     res.render('campgrounds/index', { camps, sort: req.query.sort, search: req.query.search })
