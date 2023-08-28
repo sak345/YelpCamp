@@ -7,24 +7,33 @@
   <div class="me-auto">
     <h1 class="text-center">All Campgrounds</h1>
   </div>
-  <div class="mt-2  d-flex justify-content-between align-items-center">
-    <label for="sort" class="form-label mt-2 me-2 ms-auto">Sort by: </label>
-    <form action="/campgrounds" method="get" class="row g-3 align-items-center" id="sortForm">
-      <div class="col-auto justify-content-between">
-        <select id="sort" class="form-select" name="sort" style="width: 100px;">
-          <option value="None" <%= sort === 'None' ? "selected" : '' %>>None</option>
-          <option value="Rating" <%= sort === 'Rating' ? "selected" : '' %>>Rating</option>
-          <option value="Reviews" <%= sort === 'Reviews' ? "selected" : '' %>>No. of Reviews</option>
-        </select>
-      </div>
-      <div class="col">
+  <form action="/campgrounds" method="get" class="" id="sortForm">
+    <div class="mt-4 row align-items-center">
+      <div class="col-md-7">
         <div class="input-group">
-          <input type="search" name="search" id="search" placeholder="Search name or location" value="<%= search %>" class="form-control" style="max-width: 100%;">
+          <span class="input-group-text" id="addon-wrapping">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </span>
+          <input type="search" name="search" id="search" placeholder="Search name or location" value="<%= search %>" class="form-control">
           <button class="btn btn-primary mt-md-0">Search</button>
         </div>
       </div>
-    </form>
-  </div>
+      <div class="col-md-2 text-md-end">
+        <label for="sort" class="form-label mt-2">Sort by: </label>
+      </div>
+      <div class="col-md-3">
+        <select id="sort" class="form-select" name="sort">
+          <option value="None" <%= sort === 'None' ? "selected" : '' %>>None</option>
+          <option value="Rating" <%= sort === 'Rating' ? "selected" : '' %>>Rating</option>
+          <option value="Reviews" <%= sort === 'Reviews' ? "selected" : '' %>>No. of Reviews</option>
+          <option value="PriceLtoH" <%= sort === 'PriceLtoH' ? "selected" : '' %>>Price (low to high)</option>
+          <option value="PriceHtoL" <%= sort === 'PriceHtoL' ? "selected" : '' %>>Price (high to low)</option>
+        </select>
+      </div> 
+    </div>
+  </form>
 </div>
 
 <% for(let camp of camps){ %> <% let sum = 0, count = 0 %> <% for(let review of

@@ -60,6 +60,14 @@ module.exports.allCampgrounds = async (req, res) => {//displays all campgrounds
         camps.sort((camp1, camp2) => {
             return camp2.reviews.length - camp1.reviews.length;
         })
+    } else if (req.query.sort == "PriceLtoH" && camps.length > 0) {
+        camps.sort((camp1, camp2) => {
+            return camp1.price - camp2.price;
+        })
+    } else if (req.query.sort == "PriceHtoL" && camps.length > 0) {
+        camps.sort((camp1, camp2) => {
+            return camp2.price - camp1.price;
+        })
     }
 
     res.render('campgrounds/index', { camps, sort: req.query.sort, search: req.query.search })
