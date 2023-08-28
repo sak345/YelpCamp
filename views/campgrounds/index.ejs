@@ -5,20 +5,21 @@
 ></div>
 
 
-<div class="mt-4 d-flex justify-content-between">
+<div class="mt-4">
   <div class="me-auto">
     <!-- All Campgrounds Heading -->
     <h1 class="text-center">All Campgrounds</h1>
     
   </div>
   
-  <label for="sort" class="form-label mt-3 me-2">Sort by: </label>
-  <div class="mt-2">
+  
+  <div class="mt-2  d-flex justify-content-between align-items-center">
+    <label for="sort" class="form-label mt-2 me-2 ms-auto">Sort by: </label>
     <!-- Sort By and Search Form -->
     <form action="/campgrounds" method="get" class="row g-3 align-items-center" id="sortForm">
       <!-- Sort By Label and Select Input -->
       <div class="col-auto justify-content-between">
-        <select id="sort" class="form-select" name="sort" style="width: 150px;">
+        <select id="sort" class="form-select" name="sort" style="width: 100px;">
           <option value="None" <%= sort === 'None' ? "selected" : '' %>>None</option>
           <option value="Rating" <%= sort === 'Rating' ? "selected" : '' %>>Rating</option>
         </select>
@@ -28,7 +29,7 @@
       <div class="col">
         <div class="input-group">
           <input type="search" name="search" id="search" placeholder="Search name or location" value="<%= search %>" class="form-control" style="max-width: 100%;">
-          <button class="btn btn-primary">Search</button>
+          <button class="btn btn-primary mt-md-0">Search</button>
         </div>
       </div>
     </form>
@@ -109,7 +110,7 @@ camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
 </script>
 <script src="/javascripts/clusterMap.js"></script>
 
-<script> //script to automatically submit the form on selecting
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("sortForm");
     const selectElement = document.getElementById("sort");
