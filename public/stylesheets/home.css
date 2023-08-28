@@ -3,6 +3,12 @@ body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1542332213-1d277bf3d6c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80");
     background-size: cover;
     background-position: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+body.fade-in {
+    opacity: 1;
 }
 
 .cover-container {

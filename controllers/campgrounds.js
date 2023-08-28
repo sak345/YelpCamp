@@ -4,9 +4,61 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding')
 const mapBoxToken = process.env.mapbox_token
 const geoCoder = mbxGeocoding({ accessToken: mapBoxToken })
 
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+
 module.exports.allCampgrounds = async (req, res) => {//displays all campgrounds
-    const camps = await Campground.find({}).populate('reviews')
-    res.render('campgrounds/index', { camps })
+    let regex = '';
+    if (req.query.search) {
+        regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    }
+
+    let camps = await Campground.find({
+        $or: [
+            {
+                title: {
+                    $regex: regex,
+                }
+            },
+            {
+                location: {
+                    $regex: regex,
+                }
+            }
+        ]
+    }).populate('reviews')
+    if (camps.length < 1) {
+        req.flash('err', "Sorry, no matches found, try searching again...")
+        return res.redirect('/campgrounds')
+    }
+    if (req.query.sort == "Rating" && camps.length > 0) {
+        camps.sort((camp1, camp2) => {
+            if (camp1.reviews.length > 0 && camp2.reviews.length > 0) {
+                let overallRating1 = 0, overallRating2 = 0;
+                for (let i = 0; i < camp1.reviews.length; i++) {
+                    overallRating1 += camp1.reviews[i].rating;
+                }
+                overallRating1 /= camp1.reviews.length;
+                for (let i = 0; i < camp2.reviews.length; i++) {
+                    overallRating2 += camp2.reviews[i].rating;
+                }
+                overallRating2 /= camp2.reviews.length;
+
+                return overallRating2 - overallRating1;
+            }
+            else if (camp1.reviews.length > 0) {
+                return -1;
+            }
+            else if (camp2.reviews.length > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        })
+    }
+
+    res.render('campgrounds/index', { camps, sort: req.query.sort, search: req.query.search })
 }
 
 module.exports.renderNewForm = (req, res) => {//opens a form to post new campground

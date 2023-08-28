@@ -68,7 +68,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        secret: true,//enable only in production mode
+        //secret: true,//enable only in production mode
         maxAge: 1000 * 60 * 60 * 12
     }
 }

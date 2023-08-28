@@ -17,6 +17,8 @@
       href="/stylesheets/starability-heart.css"
     />
     <link rel="stylesheet" href="/stylesheets/home.css" />
+    
+
   </head>
   <body class="bg-dark d-flex text-center text-white">
     <div class="cover-container d-flex flex-column mx-auto">
@@ -88,5 +90,12 @@
       integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // Wait for the page to fully load
+      window.addEventListener("load", function () {
+        // Add the 'fade-in' class to the body element to trigger the transition
+        document.body.classList.add("fade-in");
+      });
+    </script>
   </body>
 </html>

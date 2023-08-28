@@ -1,10 +1,40 @@
 <%- layout('layouts/boilerplate') %>
 <div
-  class="rounded my-3 border border-black"
+  class="rounded border border-black"
   id="cluster-map"
 ></div>
 
-<h1 class="text-center">All Campgrounds</h1>
+
+<div class="mt-4 d-flex justify-content-between">
+  <div class="me-auto">
+    <!-- All Campgrounds Heading -->
+    <h1 class="text-center">All Campgrounds</h1>
+    
+  </div>
+  
+  <label for="sort" class="form-label mt-3 me-2">Sort by: </label>
+  <div class="mt-2">
+    <!-- Sort By and Search Form -->
+    <form action="/campgrounds" method="get" class="row g-3 align-items-center" id="sortForm">
+      <!-- Sort By Label and Select Input -->
+      <div class="col-auto justify-content-between">
+        <select id="sort" class="form-select" name="sort" style="width: 150px;">
+          <option value="None" <%= sort === 'None' ? "selected" : '' %>>None</option>
+          <option value="Rating" <%= sort === 'Rating' ? "selected" : '' %>>Rating</option>
+        </select>
+      </div>
+
+      <!-- Search Input and Button -->
+      <div class="col">
+        <div class="input-group">
+          <input type="search" name="search" id="search" placeholder="Search name or location" value="<%= search %>" class="form-control" style="max-width: 100%;">
+          <button class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 
 <% for(let camp of camps){ %> <% let sum = 0, count = 0 %> <% for(let review of
 camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
@@ -78,3 +108,36 @@ camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
   const campgrounds = {features: <%- JSON.stringify(camps) %>}
 </script>
 <script src="/javascripts/clusterMap.js"></script>
+
+<script>
+  const exampleModal = document.getElementById('exampleModal')
+  if (exampleModal) {
+    exampleModal.addEventListener('show.bs.modal', event => {
+      // Button that triggered the modal
+      const button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      const recipient = button.getAttribute('data-bs-whatever')
+      // If necessary, you could initiate an Ajax request here
+      // and then do the updating in a callback.
+
+      // Update the modal's content.
+      const modalTitle = exampleModal.querySelector('.modal-title')
+      const modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+      modalTitle.textContent = `New message to ${recipient}`
+      modalBodyInput.value = recipient
+    })
+  }
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("sortForm");
+    const selectElement = document.getElementById("sort");
+
+    selectElement.addEventListener("change", function () {
+      form.submit(); // Automatically submit the form when an option is selected
+    });
+  });
+</script>
+
