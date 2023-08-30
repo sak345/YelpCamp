@@ -3,10 +3,7 @@
   class="rounded border border-black"
   id="cluster-map"
 ></div>
-<div class="mt-4">
-  <div class="me-auto">
-    <h1 class="text-center">All Campgrounds</h1>
-  </div>
+<div class="mt-2">
   <form action="/campgrounds" method="get" class="" id="sortForm">
     <div class="mt-4 row align-items-center">
       <div class="col-md-7">
@@ -36,40 +33,47 @@
   </form>
 </div>
 
-<% for(let camp of camps){ %> <% let sum = 0, count = 0 %> <% for(let review of
-camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
 
-<div class="card my-3 text-bg-light shadow text-black">
-  <div class="row">
-    <div class="col-md-4">
-      <img
+<% let i = 0 %>
+<div class="row mt-2">
+<% for(let camp of camps){ %><% let sum = 0, count = 0 %> <% for(let review of
+camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
+<div class="col-sm-12 col-md-4 my-2">
+      <div class="card">
+        <img
         crossorigin="anonymous"
         src="<%= camp.img[0].thumbnail %>"
         class="card-img-top img-fluid img-thumbnail rounded border-black"
         alt="..."
         style="max-height: 250px; min-height: 250px"
       />
-    </div>
-    <div class="col-md-8">
       <div class="card-body">
-        <div class="d-flex justify-content-between">
-          <a class="text-decoration-none" href="/campgrounds/<%= camp._id %>">
-            <h5 class="card-title"><%= camp.title %></h5>
-          </a>
-          <% if(count){ %>
-          <h5>
-            <p
-              class="starability-result card-text"
-              data-rating="<%= Math.round((sum/count)) %>"
-            >
-              Rated: <%= Math.round((sum/count)) %> stars
-            </p>
-          </h5>
-          <% }else{ %>
-          <h5 class="fs-6"><i>Not yet rated</i></h5>
-          <% } %>
-        </div>
-        <p class="card-text">
+        <a class="text-decoration-none" href="/campgrounds/<%= camp._id %>">
+          <h5 class="card-title"><%= camp.title %></h5>
+        </a>
+        <% if(count){ %>
+            <div class="d-flex align-items-center">
+              <p
+                class="starability-result"
+                data-rating="<%= Math.round((sum/count)) %>"
+              >
+                Rated: <%= Math.round((sum/count)) %> stars
+              </p>
+              <p class="ms-2">
+                <%= camp.reviews.length %>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                  </svg>
+                </span>
+              </p>  
+            </div>
+        <% }else{ %>
+          <p><i>Not yet rated</i></p>
+        <% } %>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
           <span
             ><svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,16 +95,22 @@ camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
             href="https://www.google.com/maps/place/<%= camp.location.split(' ').join('') %>"
             ><small><%= camp.location %></small></a
           >
-        </p>
-        <p class="card-text"><%= camp.description %></p>
+        </li>
+        <li class="list-group-item">$<%= camp.price %>/night</li>
+      </ul>
+      <div class="card-body">
         <a href="/campgrounds/<%= camp._id %>" class="btn btn-primary"
           >View Details</a
         >
       </div>
+      </div>
+      <% i++; %> 
     </div>
-  </div>
-</div>
 
+<% if(i % 3 == 0) { %>
+  </div>
+  <div class="row">
+<% } %>
 <% } %>
 
 <script>
@@ -119,4 +129,3 @@ camp.reviews){ %> <% sum += review.rating %> <% count++ %> <% } %>
     });
   });
 </script>
-

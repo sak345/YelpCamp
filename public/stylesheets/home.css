@@ -42,3 +42,14 @@ body.fade-in {
     text-decoration: #333;
     text-shadow: none;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+p.lead {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 19px;
+    color: #DDD;
+    /* Lighter shade for the paragraph text */
+    text-align: center;
+    margin-top: 10px;
+}
