@@ -2,7 +2,8 @@
 ### Link to the deployed application: 
 [https://yelpcamp-whxx.onrender.com](https://yelpcamp-whxx.onrender.com)
 ### Overview:
-* Campeazy is a user-friendly web application designed for campers to explore, share, and review campgrounds effortlessly.
+* Campeazy is an ambitious project that aims to create a robust, user-friendly and engaging community-driven platform for camping enthusiasts to explore, share, and review campgrounds effortlessly.
+* Built using modern JavaScript technologies, the RESTful route architecture, and the inclusion of essential tools like Node.js, Express, MongoDB, and Mongoose set the foundation for a promising and feature-rich camping experience.
 ### Features:
 * **User Authentication:** Secure user registration and login powered by Passport.js.
 * **Explore Campgrounds:** Discover a diverse list of campgrounds with detailed information.
@@ -13,7 +14,7 @@
 * **Cloudinary API:** Efficient image storage and image transformation on the fly.
 * **MongoDB Atlas:** Utilizes a cloud database to store user models, reviews, and campgrounds.
 
-Overall, Campeazy is an ambitious project that aims to create a robust and engaging community-driven platform for camping enthusiasts. The utilization of modern JavaScript technologies, the RESTful route architecture, and the inclusion of essential tools like Node.js, Express, MongoDB, and Mongoose set the foundation for a promising and feature-rich camping experience.
+Overall,  The utilization of 
 
 ### Future add-ons to Campeazy:
 **1. User Interaction Features:**
