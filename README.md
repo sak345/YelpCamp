@@ -22,7 +22,7 @@ Overall, Campeazy is an ambitious project that aims to create a robust and engag
 
 **2. Social Media Integration:**  
 * **Social Sharing:** Implement social media sharing buttons to allow users to easily share their campground discoveries and reviews with their social networks.
-* * **User Profiles:** Enhance user profiles by adding social media integration for connecting with fellow campers.
+* **User Profiles:** Enhance user profiles by adding social media integration for connecting with fellow campers.
 
 **3. User-Generated Content Moderation:**  
 * **Content Reporting:** Implement a reporting system for users to flag inappropriate content, ensuring a safe and respectful community.  
