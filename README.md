@@ -14,8 +14,6 @@
 * **Cloudinary API:** Efficient image storage and image transformation on the fly.
 * **MongoDB Atlas:** Utilizes a cloud database to store user models, reviews, and campgrounds.
 
-Overall,  The utilization of 
-
 ### Future add-ons to Campeazy:
 **1. User Interaction Features:**
   * **Q&A Section:** Introduce a Q&A platform where users can ask questions and share insights about specific campgrounds, fostering a helpful community.
