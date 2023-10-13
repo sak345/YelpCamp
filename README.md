@@ -3,7 +3,7 @@
 * [Link to the application](https://github.com/sak345/Campeazy#link-to-the-deployed-application)
 * [Overview](https://github.com/sak345/Campeazy#overview)
 * [Features](https://github.com/sak345/Campeazy#features)
-* [Future add-ons](https://github.com/sak345/Campeazy#future-add-ons-to-campeazy)
+* [Future add-ons](https://github.com/sak345/Campeazy#future-add-ons)
 ### Link to the deployed application: 
 [https://yelpcamp-whxx.onrender.com](https://yelpcamp-whxx.onrender.com)
 ### Overview:
