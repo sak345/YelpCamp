@@ -1,4 +1,9 @@
 # Campeazy - Discover, Explore, Camp!
+### Table of contents:  
+* [Link to the application](https://github.com/sak345/Campeazy/edit/main/README.md#link-to-the-deployed-application)
+* [Overview](https://github.com/sak345/Campeazy/edit/main/README.md#overview)
+* [Features](https://github.com/sak345/Campeazy/edit/main/README.md#features)
+* [Future add-ons](https://github.com/sak345/Campeazy/edit/main/README.md#future-add-ons-to-campeazy)
 ### Link to the deployed application: 
 [https://yelpcamp-whxx.onrender.com](https://yelpcamp-whxx.onrender.com)
 ### Overview:
@@ -14,7 +19,7 @@
 * **Cloudinary API:** Efficient image storage and image transformation on the fly.
 * **MongoDB Atlas:** Utilizes a cloud database to store user models, reviews, and campgrounds.
 
-### Future add-ons to Campeazy:
+### Future add-ons:
 **1. User Interaction Features:**
   * **Q&A Section:** Introduce a Q&A platform where users can ask questions and share insights about specific campgrounds, fostering a helpful community.
   * **Discussion Boards:** Create discussion boards for users to engage in conversations, exchange tips, and share experiences related to camping.
