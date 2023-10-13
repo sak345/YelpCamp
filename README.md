@@ -1,9 +1,9 @@
 # Campeazy - Discover, Explore, Camp!
 ### Table of contents:  
-* [Link to the application](https://github.com/sak345/Campeazy/edit/main/README.md#link-to-the-deployed-application)
-* [Overview](https://github.com/sak345/Campeazy/edit/main/README.md#overview)
-* [Features](https://github.com/sak345/Campeazy/edit/main/README.md#features)
-* [Future add-ons](https://github.com/sak345/Campeazy/edit/main/README.md#future-add-ons-to-campeazy)
+* [Link to the application](https://github.com/sak345/Campeazy#link-to-the-deployed-application)
+* [Overview](https://github.com/sak345/Campeazy#overview)
+* [Features](https://github.com/sak345/Campeazy#features)
+* [Future add-ons](https://github.com/sak345/Campeazy#future-add-ons-to-campeazy)
 ### Link to the deployed application: 
 [https://yelpcamp-whxx.onrender.com](https://yelpcamp-whxx.onrender.com)
 ### Overview:
