@@ -1,0 +1,55 @@
+body {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1542332213-1d277bf3d6c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80");
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+.cover-container {
+    max-width: 60vw;
+}
+
+.nav-link {
+    padding: 0.25rem 0;
+    color: rgba(255, 255, 255, 0.5);
+    border-bottom: 0.25 solid transparent;
+    font-size: larger;
+}
+
+.navbar {
+    font-weight: 700;
+}
+
+.nav-link:hover {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.btn-secondary {
+    color: white;
+    text-shadow: none;
+    background: none;
+}
+
+.btn-secondary:hover {
+    text-decoration: #333;
+    text-shadow: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+p.lead {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 19px;
+    color: #DDD;
+    /* Lighter shade for the paragraph text */
+    text-align: center;
+    margin-top: 10px;
+}

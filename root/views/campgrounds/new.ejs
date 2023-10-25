@@ -1,0 +1,110 @@
+
+<%- layout('layouts/boilerplate') %>
+
+<div class="row text-white m-auto rounded">
+  <div
+    class="col-md-6 offset-md-3 px-5 mt-2 container flex-column align-items-center justify-content-center mb-3"
+  >
+    <div class="card text-bg-light shadow p-3">
+      <div class="card-title">
+        <h3>New Campground</h3>
+      </div>
+      <img
+        class="card-image-top rounded img-fluid"
+        src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+      />
+      <div class="card-body">
+        <form
+      action="/campgrounds"
+      method="post"
+      class="needs-validation"
+      novalidate
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title (atleast 5 characters)</label>
+        <input 
+        type="text" 
+        class="form-control" 
+        id="title"
+        name="campground[title]" 
+        placeholder="Eg: MyCamp " 
+        required minlength="5" 
+        maxlength="30" <% if(formData && formData.length){//displaying this value if the user made a mistake and already filled some data in the form %> 
+         value = "<%= formData[0].campground.title %>" 
+        <% } %> />
+        <div class="invalid-feedback">
+          Please provide a valid name of atleast 5 and atmost 30 characters
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location (City, State, Country)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="location"
+          name="campground[location]"
+          placeholder="Eg: Chicago, Illinois, USA"
+          required
+          <%if(formData&&formData.length){%>
+            value = "<%= formData[0].campground.location %>"
+          <% } %>
+        />
+        
+        <div class="invalid-feedback">Please provide a valid location</div>
+      </div>
+      <div class="mb-3">
+        <label for="img" class="form-label">Upload images for your campground</label>
+        <input class="form-control form-file" type="file" id="img" name="campground[img]" accept=".jpg, .jpeg, .png" multiple required onchange="validateFileCount(this)">
+        <div class="invalid-feedback">Please upload min. 1 and max. 6 images</div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input
+            type="number"
+            id="price"
+            class="form-control"
+            aria-label="Amount (to the nearest dollar)"
+            placeholder="Eg: 5"
+            name="campground[price]"
+            required
+            min="0"
+            <%if(formData && formData.length){ %>
+              value = "<%= formData[0].campground.price %>"
+            <% } %>
+          />
+
+          <span class="input-group-text">.00</span>
+          <div class="invalid-feedback">Please provide a valid price</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          id="description"
+          name="campground[description]"
+          placeholder="Describe your campground for the users in atleast 20 characters..."
+          rows="3"
+          required
+          minlength="20"
+        ><% if(formData && formData.length){ %><%= formData[0].campground.description %><% } %></textarea>
+        <div class="invalid-feedback">
+          Please provide a valid description of minimum 20 characters
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </div>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+  
+  

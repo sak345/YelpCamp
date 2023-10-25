@@ -1,0 +1,20 @@
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+#cluster-map {
+    width: 100%;
+    /*1115px; */
+    height: 350px;
+}
+
+#show-map {
+    width: 100%;
+    /*890px;*/
+    height: 300px;
+}

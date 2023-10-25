@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campeazy</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/stylesheets/starability-heart.css"
+    />
+    <link rel="stylesheet" href="/stylesheets/home.css" />
+    
+
+  </head>
+  <body class="bg-dark d-flex text-center text-white">
+    <div class="cover-container d-flex flex-column mx-auto">
+      <header class="mb-auto">
+        <nav
+          class="navbar sticky-top navbar-expand-lg navbar-dark"
+          style="z-index: 1030"
+        >
+          <div class="container-fluid">
+            <div class="d-flex justify-content-between w-100">
+              <a class="navbar-brand" href="#"><span class="me-2"> <img style="width: 40px; height: 40px;" src="/icons/favicon.ico" alt=""></span><span style="color: #fff;">Camp<span style="color: #FF8C00;">eazy</span></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse order-last" id="navbarNavAltMarkup">
+              <div class="navbar-nav ms-auto">
+                <% if(!currUser){%>
+                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="/signUp">SignUp</a>
+                <% }else{ %>
+                <a class="nav-link" href="/logout">Logout</a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main class="px-3">
+        <h1 class="mb-4"><span style="color: #fff;">Camp<span style="color: #FF8C00;">eazy</span></h1>
+
+        <p class="lead mb-3">
+          Welcome to Campeazy: Discover, Explore, Camp! <br />
+          Unveil Your Ultimate Campground Adventure & Share Your Slice of
+          Wilderness with the World
+        </p>
+        <a
+          href="/campgrounds"
+          class="btn btn-large btn-secondary font-weight-bold"
+          >Start exploring</a
+        >
+      </main>
+      <footer class="footer py-3 mt-auto text-white">
+        <div class="container">
+          <span>&copy; <a href="https://github.com/sak345/YelpCamp.git" class="text-white">sak345</a></span>
+        </div>
+      </footer>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+      integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // Wait for the page to fully load
+      window.addEventListener("load", function () {
+        // Add the 'fade-in' class to the body element to trigger the transition
+        document.body.classList.add("fade-in");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<nav
+  class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"
+  style="z-index: 1030"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"> <span class="me-3"> <img style="width: 35px; height: 35px;" src="/icons/favicon.ico" alt=""></span><span style="color: #fff;">Camp<span style="color: #FF8C00;">eazy</span></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/campgrounds">All Campgrounds</a>
+        <a class="nav-link" href="/campgrounds/new">New Campground</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <% if(!currUser){%>
+        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/signUp">Sign Up</a>
+        <% }else{ %>
+        <a class="nav-link" href="/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
