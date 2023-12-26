@@ -26,7 +26,7 @@ const otpSchema = new Schema({
 
 const sendVerificationEmail = async (userId, otp) => {
     const user = await User.findById(userId)
-    const message = `<h2>Hello, ${user.username}! </h2> <h3>Welcome to Campeazy, Your email verification code is - <b>${otp}</b></h3>`
+    const message = `<h3>Hello, ${user.username}! </h3> <h4>Welcome to Campeazy, <br>Your email verification code is: <b>${otp}</b></h4> <p>This code will expire in 2 minutes.</p> <br> <p>Don't share this code or email with anyone. If you didn't request verification, you can safely ignore this.</p>`
     const mailResponse = await mailSender(user.email, "Campeazy email verification", message, "Please use this code to verify your email address.")
     return mailResponse
 }
