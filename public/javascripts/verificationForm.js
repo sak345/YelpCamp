@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     inputs.forEach(function (input) {
         input.setAttribute('maxlength', 1);
 
-        input.addEventListener('input', function (e) {
+        input.addEventListener('keyup', function (e) {
             var parent = this.parentElement;
 
             if (e.keyCode === 8 || e.keyCode === 37) {
